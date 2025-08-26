@@ -456,7 +456,7 @@ func _on_open_model_dialog_file_selected(path: String) -> void:
 			dictionary["markov_matrix"]             = markov_gen.markov_matrix
 			
 		_:
-			error_dialog = "{file_name} is not supported {file_extension}".format({"file_name":path.get_file(), "file_extension":path.get_file()})
+			error_dialog = "{file_extension} is not supported {file_name}".format({"file_name":path.get_file(), "file_extension":path.get_file().get_extension()})
 			printerr(error_dialog)
 	
 	if error_dialog != "":

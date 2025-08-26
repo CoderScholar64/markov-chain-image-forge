@@ -436,7 +436,7 @@ func get_max_states() -> int:
 ## if there is no single state in this resource. In between, is how much this resource's
 ## states are known. The closer to 1.0 the more the states are known.
 func get_known_state_factor() -> float:
-	return get_num_states() / get_max_states()
+	return float(get_num_states()) / float(get_max_states())
 
 ## This method is designed to tell the programmer if there is anything wrong with
 ## this resource. If this resource returns an [b]empty[/b] [String] then this resource
