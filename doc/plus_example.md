@@ -111,3 +111,7 @@ These are the rules modified so they would work with six faced dice rolls.
 This animation shows a simplified example of what generate image does step by step.
 
 ![This shows the image being generated second by second](./images/generate_image.gif)
+
+This is the output result.
+
+![A 8x12 image that is mostly a void. While it has no plus symbol, it does have some ocasional one pixel stars. In addition, there are diagonal line loops in the image.](./images/output.png)
