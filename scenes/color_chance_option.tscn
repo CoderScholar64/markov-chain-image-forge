@@ -10,12 +10,21 @@ offset_bottom = 32.0
 alignment = 2
 script = ExtResource("1_f3ksx")
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(282.155, 0)
 layout_mode = 2
 
-[node name="IndexLabel" type="RichTextLabel" parent="ColorPickerButton"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Control"]
+unique_name_in_owner = true
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IndexLabel" type="RichTextLabel" parent="Control/ColorPickerButton"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 1
@@ -48,5 +57,5 @@ layout_mode = 2
 text = "Chance:"
 vertical_alignment = 1
 
-[connection signal="popup_closed" from="ColorPickerButton" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="popup_closed" from="Control/ColorPickerButton" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="value_changed" from="ChanceSpinBox" to="." method="_on_chance_spin_box_value_changed"]
