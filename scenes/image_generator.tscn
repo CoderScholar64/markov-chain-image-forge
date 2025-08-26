@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7r2gq80kw1rx"]
+
+[ext_resource type="Script" uid="uid://dv3poaiio7rdw" path="res://scripts/image_generator.gd" id="1_twtuv"]
+[ext_resource type="PackedScene" uid="uid://b2ginn8er686" path="res://scenes/file_download_dialog.tscn" id="2_yrbva"]
+[ext_resource type="Texture2D" uid="uid://d0eklbkkk5753" path="res://icon.svg" id="3_yrbva"]
+
+[node name="Generator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_twtuv")
+metadata/_tab_index = 1
+
+[node name="SaveGeneratedErrorDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Error: Image Cannot Be Saved"
+initial_position = 2
+size = Vector2i(600, 140)
+dialog_text = "The image file has failed to write.
+"
+dialog_autowrap = true
+
+[node name="SaveGeneratedDownloadDialog" parent="." instance=ExtResource("2_yrbva")]
+unique_name_in_owner = true
+title = "Enter the Name for this Generated Image to Download"
+size = Vector2i(497, 205)
+visible = false
+fliters = PackedStringArray("*.png;Portable Network Graphics;image/png", "*.webp;WebP by Google;image/webp", "*.exr;OpenEXR;image/x-exr")
+
+[node name="SaveGeneratedDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+access = 2
+filters = PackedStringArray("*.png;Portable Network Graphics;image/png", "*.webp;WebP by Google;image/webp", "*.exr;OpenEXR;image/x-exr")
+
+[node name="ImageDisplay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_yrbva")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ActionContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 132.0
+offset_bottom = 33.0
+grow_vertical = 2
+
+[node name="GenerateImageButton" type="Button" parent="ActionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Regenerate Image
+"
+
+[node name="NewSeedButton" type="Button" parent="ActionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Generate With New Seed
+"
+
+[node name="ExportImageButton" type="Button" parent="ActionContainer"]
+layout_mode = 2
+text = "Export Generated Image"
+
+[node name="ConfigContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -50.5
+offset_bottom = 50.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="WidthSpinBox" type="SpinBox" parent="ConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 2.0
+max_value = 1024.0
+value = 64.0
+rounded = true
+allow_greater = true
+alignment = 2
+prefix = "Width"
+suffix = "px"
+
+[node name="HeightSpinBox" type="SpinBox" parent="ConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 2.0
+max_value = 1024.0
+value = 64.0
+rounded = true
+allow_greater = true
+alignment = 2
+prefix = "Height"
+suffix = "px"
+
+[node name="RepeatLineSpinBox" type="SpinBox" parent="ConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+allow_greater = true
+alignment = 2
+suffix = "times"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ConfigContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConfigContainer/VBoxContainer"]
+layout_mode = 2
+text = "Seed:"
+
+[node name="SeedEdit" type="LineEdit" parent="ConfigContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+max_length = 24
+
+[connection signal="file_selected" from="SaveGeneratedDownloadDialog" to="." method="_on_save_generated_dialog_file_selected"]
+[connection signal="file_selected" from="SaveGeneratedDialog" to="." method="_on_save_generated_dialog_file_selected"]
+[connection signal="gui_input" from="ImageDisplay" to="." method="_on_image_display_gui_input"]
+[connection signal="pressed" from="ActionContainer/GenerateImageButton" to="." method="_on_generate_image_button_pressed"]
+[connection signal="pressed" from="ActionContainer/NewSeedButton" to="." method="_on_new_seed_button_pressed"]
+[connection signal="pressed" from="ActionContainer/ExportImageButton" to="." method="_on_export_image_button_pressed"]
+[connection signal="text_submitted" from="ConfigContainer/VBoxContainer/SeedEdit" to="." method="_on_seed_edit_text_submitted"]

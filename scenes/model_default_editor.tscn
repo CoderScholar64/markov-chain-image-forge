@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://borlimc3lpk2d"]
+
+[ext_resource type="Script" uid="uid://dxjpl63idsbx" path="res://scripts/model_default_editor.gd" id="1_ngktv"]
+[ext_resource type="PackedScene" uid="uid://nc1fe3kmbhtc" path="res://scenes/markov_condition_container.tscn" id="1_rv01t"]
+
+[node name="ModelDefaultEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ngktv")
+metadata/_tab_index = 1
+
+[node name="ColorChancesLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -186.5
+offset_right = 123.0
+offset_bottom = -147.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+text = "Default Value Grid"
+vertical_alignment = 1
+
+[node name="MarkovConditionContainer" parent="." instance=ExtResource("1_rv01t")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -111.0
+offset_right = 160.0
+offset_bottom = 111.0
+
+[connection signal="option_selected_single" from="MarkovConditionContainer" to="." method="_on_markov_condition_container_option_selected_single"]

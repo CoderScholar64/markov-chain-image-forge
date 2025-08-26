@@ -1,0 +1,280 @@
+[gd_scene load_steps=13 format=3 uid="uid://bb10pcysh2ags"]
+
+[ext_resource type="Script" uid="uid://dg31l3auhr7k0" path="res://scripts/file_popup_menu.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dvi21n4chcgui" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://8dlkdox8w053" path="res://scenes/model_rule_editor.tscn" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://depw10s2alkxm" path="res://scripts/edit_popup_menu.gd" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://b7r2gq80kw1rx" path="res://scenes/image_generator.tscn" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://deralcijcmmuy" path="res://assets/drag_file_here.webp" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://borlimc3lpk2d" path="res://scenes/model_default_editor.tscn" id="5_272bh"]
+[ext_resource type="PackedScene" uid="uid://bsf31i1ds8oe7" path="res://scenes/model_from_image_window.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b2ginn8er686" path="res://scenes/file_download_dialog.tscn" id="9_4c57u"]
+[ext_resource type="Texture2D" uid="uid://d0eklbkkk5753" path="res://icon.svg" id="10_4c57u"]
+
+[sub_resource type="GDScript" id="GDScript_kek77"]
+resource_name = "HelpPopupMenu"
+script/source = "extends PopupMenu
+
+
+@export var about_window: Window
+
+
+func _on_index_pressed(index: int) -> void:
+	assert(about_window)
+	
+	if index == 0:
+		about_window.show()
+"
+
+[sub_resource type="GDScript" id="GDScript_5vw27"]
+resource_name = "AboutScript"
+script/source = "extends Window
+
+
+func _on_button_pressed() -> void:
+	hide()
+
+
+func _on_close_requested() -> void:
+	hide()
+"
+
+[node name="MainControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lquwl")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.00012207
+offset_bottom = -623.0
+grow_horizontal = 2
+
+[node name="FilePopupMenu" type="PopupMenu" parent="MenuBar" node_paths=PackedStringArray("main_control")]
+unique_name_in_owner = true
+title = "File"
+size = Vector2i(220, 116)
+item_count = 7
+item_0/text = "Create Model From Image"
+item_0/id = 0
+item_1/text = "Open Model File"
+item_1/id = 1
+item_2/id = 6
+item_2/separator = true
+item_3/text = "Save Model"
+item_3/id = 2
+item_3/disabled = true
+item_4/text = "Save Model As"
+item_4/id = 3
+item_4/disabled = true
+item_5/id = 5
+item_5/separator = true
+item_6/text = "Quit"
+item_6/id = 4
+script = ExtResource("1_ig7tw")
+main_control = NodePath("../..")
+
+[node name="EditPopupMenu" type="PopupMenu" parent="MenuBar" node_paths=PackedStringArray("main_control")]
+unique_name_in_owner = true
+title = "Edit"
+item_count = 2
+item_0/text = "Undo"
+item_0/id = 0
+item_0/disabled = true
+item_1/text = "Redo"
+item_1/id = 1
+item_1/disabled = true
+script = ExtResource("3_272bh")
+main_control = NodePath("../..")
+
+[node name="HelpPopupMenu" type="PopupMenu" parent="MenuBar" node_paths=PackedStringArray("about_window")]
+title = "Help"
+item_count = 1
+item_0/text = "About"
+item_0/id = 0
+script = SubResource("GDScript_kek77")
+about_window = NodePath("../../AboutWindow")
+
+[node name="StartupInstructions" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="StartupInstructions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -127.0
+offset_right = 140.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kek77")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="StartupInstructions/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = 113.5
+offset_right = 119.0
+offset_bottom = 136.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drag and Drop Model File Here"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 0
+current_tab = 0
+
+[node name="Defaults" parent="TabContainer" node_paths=PackedStringArray("main_control") instance=ExtResource("5_272bh")]
+unique_name_in_owner = true
+layout_mode = 2
+main_control = NodePath("../..")
+metadata/_tab_index = 0
+
+[node name="Model" parent="TabContainer" node_paths=PackedStringArray("main_control") instance=ExtResource("3_7mycd")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+main_control = NodePath("../..")
+metadata/_tab_index = 1
+
+[node name="Generator" parent="TabContainer" node_paths=PackedStringArray("main_control") instance=ExtResource("4_272bh")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+main_control = NodePath("../..")
+metadata/_tab_index = 2
+
+[node name="ModelFromImageWindow" parent="." instance=ExtResource("5_lquwl")]
+unique_name_in_owner = true
+
+[node name="ExitWithoutSavingDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Warning Work is Not Saved"
+initial_position = 2
+size = Vector2i(489, 106)
+ok_button_text = "Exit Without Saving"
+dialog_text = "Exiting this application now would result in unsaved changes.
+Please save your changes first."
+
+[node name="OpenModelErrorDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Error: Model File Failed to Open!"
+initial_position = 2
+size = Vector2i(600, 340)
+dialog_text = "The model file has failed to open.
+"
+dialog_autowrap = true
+
+[node name="OpenModelDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.tres;MCI Image Resource;", "*.res;MCI Image Binary Resource;", "*.json;Container File;application/json", "*.bin;Serialized Godot 4 Binary;")
+
+[node name="SaveAsPopupMenuDownload" parent="." instance=ExtResource("9_4c57u")]
+unique_name_in_owner = true
+visible = false
+fliters = PackedStringArray("*.tres;MCI Image Resource;", "*.res;MCI Image Binary Resource;", "*.json;Container File;application/json", "*.bin;Serialized Godot 4 Binary;")
+
+[node name="SaveAsModelDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 2
+access = 2
+filters = PackedStringArray("*.tres;MCI Image Resource;", "*.res;MCI Image Binary Resource;", "*.json;Container File;application/json", "*.bin;Serialized Godot 4 Binary;")
+
+[node name="AboutWindow" type="Window" parent="."]
+title = "About Markov Chain Image Generator"
+initial_position = 2
+size = Vector2i(460, 510)
+visible = false
+script = SubResource("GDScript_5vw27")
+
+[node name="TextureRect" type="TextureRect" parent="AboutWindow"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = 12.0
+offset_right = 193.0
+offset_bottom = 396.0
+grow_horizontal = 2
+texture = ExtResource("10_4c57u")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="AboutWindow"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -104.0
+offset_right = 99.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Coded by CoderScholar64
+Powered by Godot 4.4"
+
+[node name="Button" type="Button" parent="AboutWindow"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -43.0
+offset_right = 66.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Okay
+"
+
+[connection signal="id_pressed" from="MenuBar/FilePopupMenu" to="MenuBar/FilePopupMenu" method="_on_id_pressed"]
+[connection signal="id_pressed" from="MenuBar/EditPopupMenu" to="MenuBar/EditPopupMenu" method="_on_id_pressed"]
+[connection signal="index_pressed" from="MenuBar/HelpPopupMenu" to="MenuBar/HelpPopupMenu" method="_on_index_pressed"]
+[connection signal="on_missing_rule" from="TabContainer/Generator" to="TabContainer/Model" method="_on_image_generator_missing_rule"]
+[connection signal="markov_chain_submit" from="ModelFromImageWindow" to="." method="_on_model_from_image_submit"]
+[connection signal="confirmed" from="ExitWithoutSavingDialog" to="MenuBar/FilePopupMenu" method="_on_exit_without_saving_dialog_confirmed"]
+[connection signal="file_selected" from="OpenModelDialog" to="." method="_on_open_model_dialog_file_selected"]
+[connection signal="file_selected" from="SaveAsModelDialog" to="." method="_on_save_as_model_dialog_file_selected"]
+[connection signal="close_requested" from="AboutWindow" to="AboutWindow" method="_on_close_requested"]
+[connection signal="pressed" from="AboutWindow/Button" to="AboutWindow" method="_on_button_pressed"]

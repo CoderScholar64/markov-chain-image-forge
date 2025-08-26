@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ginn8er686"]
+
+[ext_resource type="Script" uid="uid://dwhq6wdtu4uiu" path="res://scripts/file_download_dialog.gd" id="1_qb543"]
+
+[node name="SaveAsPopupMenuDownload" type="Window"]
+auto_translate_mode = 1
+title = "Enter the Name of this Model to Download"
+initial_position = 2
+size = Vector2i(377, 205)
+exclusive = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_qb543")
+fliters = PackedStringArray("*.json;Container File;application/json", "*.bin;Serialized Godot 4 Binary;")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.5
+offset_top = 33.0
+offset_right = 159.5
+offset_bottom = 64.0
+grow_horizontal = 2
+placeholder_text = "Enter file name in this box"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.5
+offset_top = 90.0
+offset_right = 161.5
+offset_bottom = 121.0
+grow_horizontal = 2
+selected = 0
+item_count = 2
+popup/item_0/text = ".json (Container File)"
+popup/item_0/id = 0
+popup/item_1/text = ".bin (Serialized Godot 4 Binary)"
+popup/item_1/id = 1
+
+[node name="CancelButton" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -62.0
+offset_right = 90.0
+offset_bottom = -31.0
+grow_vertical = 0
+text = "Cancel"
+
+[node name="DownloadButton" type="Button" parent="."]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -62.0
+offset_right = -28.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "To enable this button first enter in the file name!"
+disabled = true
+text = "Download File"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="DownloadButton" to="." method="_on_download_button_pressed"]

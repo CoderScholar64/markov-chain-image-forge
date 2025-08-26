@@ -1,0 +1,175 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsf31i1ds8oe7"]
+
+[ext_resource type="Script" uid="uid://c3ue73gd1m4lw" path="res://scripts/model_from_image_window.gd" id="1_uicvc"]
+[ext_resource type="Texture2D" uid="uid://deralcijcmmuy" path="res://assets/drag_file_here.webp" id="2_ukibj"]
+[ext_resource type="PackedScene" uid="uid://nc1fe3kmbhtc" path="res://scenes/markov_condition_container.tscn" id="3_5yklt"]
+
+[node name="ModelFromImageWindow" type="Window"]
+auto_translate_mode = 1
+title = "Make a Model From a Base Image"
+initial_position = 2
+size = Vector2i(715, 580)
+visible = false
+exclusive = true
+script = ExtResource("1_uicvc")
+
+[node name="ModelFromImageDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(870, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.bmp,*.png,*.webp;Lossless Image File;image/bmp,image/png,image/webp")
+
+[node name="MakeModelDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(626, 158)
+always_on_top = true
+ok_button_text = "Make the Model"
+dialog_text = "This model currently holds {0} out of {1}. The model is {2}% done.
+To complete this model, you would have to complete {3} missing combinations"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 1
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.483
+anchor_bottom = 0.898
+offset_right = -0.119995
+offset_bottom = -0.0400391
+texture = ExtResource("2_ukibj")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.886
+anchor_right = 0.5
+anchor_bottom = 0.886
+offset_left = -161.5
+offset_top = -12.866
+offset_right = 161.5
+offset_bottom = 13.134
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]Drag Image File Here, or[/center]"
+
+[node name="BrowseFileButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.239
+anchor_top = 0.953
+anchor_right = 0.239
+anchor_bottom = 0.953
+offset_left = -121.96
+offset_top = -16.44
+offset_right = 122.04
+offset_bottom = 16.56
+text = "Browse Image File"
+
+[node name="ConditionCheckLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.108
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.16
+text = "Pick one of more pixels below.
+Pixels that are N are not read while the rest being the defaults for out of bounds cases"
+
+[node name="InformationText" type="RichTextLabel" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50625
+anchor_top = 0.658333
+anchor_right = 0.995313
+anchor_bottom = 0.902083
+text = "Number of Unique Colors = u = {0}.
+Number of Condition Checks = c = {1}.
+Total Model Combinations = u ^ c = {2}."
+metadata/_edit_use_anchors_ = true
+
+[node name="MarkovConditionContainer" parent="Control" instance=ExtResource("3_5yklt")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5125
+anchor_top = 0.139583
+anchor_right = 0.935938
+anchor_bottom = 0.5
+grow_horizontal = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SetupModel" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.953
+anchor_right = 0.722
+anchor_bottom = 0.953
+offset_left = -122.08
+offset_top = -16.44
+offset_right = 121.92
+offset_bottom = 16.56
+disabled = true
+text = "Setup Model"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498437
+anchor_top = 0.529167
+anchor_right = 0.964063
+anchor_bottom = 0.63125
+offset_top = 1.52588e-05
+tooltip_text = "This is the color that would appear on the texture if the model lacks the pixel for the given conditions."
+color = Color(1, 0, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorPickerButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -11.5
+offset_right = 291.0
+offset_bottom = 11.5
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Color Used for Error Indication"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="file_selected" from="ModelFromImageDialog" to="." method="_on_model_from_image_dialog_file_selected"]
+[connection signal="confirmed" from="MakeModelDialog" to="." method="_on_make_model_dialog_confirmed"]
+[connection signal="pressed" from="Control/BrowseFileButton" to="." method="_on_browse_file_button_pressed"]
+[connection signal="option_selected" from="Control/MarkovConditionContainer" to="." method="_on_markov_condition_container_option_selected"]
+[connection signal="pressed" from="Control/SetupModel" to="." method="_on_setup_model_pressed"]
+[connection signal="color_changed" from="Control/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

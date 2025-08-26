@@ -1,0 +1,195 @@
+[gd_scene load_steps=3 format=3 uid="uid://nc1fe3kmbhtc"]
+
+[ext_resource type="Script" uid="uid://bwq6qincv7qiq" path="res://scripts/markov_condition_container.gd" id="1_f2wq3"]
+[ext_resource type="PackedScene" uid="uid://ld623xy3qdgf" path="res://scenes/button_condition_select.tscn" id="2_xsa6o"]
+
+[node name="MarkovConditionContainer" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 7
+script = ExtResource("1_f2wq3")
+
+[node name="LabelX" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]X:[/center]"
+
+[node name="LabelN3" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]-3[/center]"
+
+[node name="LabelN2" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]-2[/center]"
+
+[node name="LabelN1" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]-1[/center]"
+
+[node name="LabelP0" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]0[/center]"
+
+[node name="LabelP1" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="LabelP2" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]2[/center]
+"
+
+[node name="LabelL4" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]L3[/center]"
+vertical_alignment = 1
+
+[node name="ButtonL3N3" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-3, -3)
+
+[node name="ButtonL3N2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-2, -3)
+
+[node name="ButtonL3N1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-1, -3)
+
+[node name="ButtonL3P0" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(0, -3)
+
+[node name="ButtonL3P1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(1, -3)
+
+[node name="ButtonL3P2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(2, -3)
+
+[node name="LabelL2" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]L2[/center]"
+vertical_alignment = 1
+
+[node name="ButtonL2N3" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-3, -2)
+
+[node name="ButtonL2N2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-2, -2)
+
+[node name="ButtonL2N1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-1, -2)
+
+[node name="ButtonL2P0" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(0, -2)
+
+[node name="ButtonL2P1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(1, -2)
+
+[node name="ButtonL2P2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(2, -2)
+
+[node name="LabelL1" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]L1[/center]"
+vertical_alignment = 1
+
+[node name="ButtonL1N3" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-3, -1)
+
+[node name="ButtonL1N2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-2, -1)
+
+[node name="ButtonL1N1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-1, -1)
+
+[node name="ButtonL1P0" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(0, -1)
+
+[node name="ButtonL1P1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(1, -1)
+
+[node name="ButtonL1P2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(2, -1)
+
+[node name="LabelL0" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]L0
+[/center]"
+vertical_alignment = 1
+
+[node name="ButtonL0N3" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-3, 0)
+
+[node name="ButtonL0N2" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-2, 0)
+
+[node name="ButtonL0N1" parent="." instance=ExtResource("2_xsa6o")]
+layout_mode = 2
+position_relative_to_cursor = Vector2i(-1, 0)
+
+[node name="LabelX2" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(18.74, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="option_selected" from="ButtonL3N3" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL3N2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL3N1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL3P0" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL3P1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL3P2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2N3" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2N2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2N1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2P0" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2P1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL2P2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1N3" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1N2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1N1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1P0" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1P1" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL1P2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL0N3" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL0N2" to="." method="_on_option_selected"]
+[connection signal="option_selected" from="ButtonL0N1" to="." method="_on_option_selected"]

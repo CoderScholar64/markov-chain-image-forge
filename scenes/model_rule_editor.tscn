@@ -1,0 +1,207 @@
+[gd_scene load_steps=4 format=3 uid="uid://8dlkdox8w053"]
+
+[ext_resource type="Script" uid="uid://ch2i4oiy1irr5" path="res://scripts/model_rule_editor.gd" id="1_ac8it"]
+[ext_resource type="PackedScene" uid="uid://csifo1gye85rn" path="res://scenes/color_chance_option.tscn" id="2_s714c"]
+[ext_resource type="PackedScene" uid="uid://nc1fe3kmbhtc" path="res://scenes/markov_condition_container.tscn" id="3_qifjl"]
+
+[node name="Model" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.948
+offset_bottom = -0.304077
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ac8it")
+color_chance_option = ExtResource("2_s714c")
+metadata/_tab_index = 0
+
+[node name="RulesSelectionPanel" type="Panel" parent="."]
+layout_mode = 0
+anchor_left = 0.0529514
+anchor_right = 0.467882
+anchor_bottom = 0.99537
+metadata/_edit_use_anchors_ = true
+
+[node name="RulesSelectionLabel" type="RichTextLabel" parent="RulesSelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00209205
+anchor_top = 0.00310078
+anchor_right = 1.0
+anchor_bottom = 0.0635659
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+text = "Rules Selection"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorComboLabel" type="RichTextLabel" parent="RulesSelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0041841
+anchor_top = 0.0914729
+anchor_right = 1.0
+anchor_bottom = 0.235659
+grow_horizontal = 2
+grow_vertical = 2
+text = "{0} out of {1} covered ({2}% completed).
+This combination does {3}exist."
+metadata/_edit_use_anchors_ = true
+
+[node name="MarkovConditionContainer" parent="RulesSelectionPanel" instance=ExtResource("3_qifjl")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 85.0
+offset_top = 211.0
+offset_right = -73.0
+offset_bottom = -199.0
+
+[node name="GetLastEmptyButton" type="Button" parent="RulesSelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0125523
+anchor_top = 0.931783
+anchor_right = 0.387029
+anchor_bottom = 0.984252
+grow_vertical = 0
+text = "Previous Combination"
+metadata/_edit_use_anchors_ = true
+
+[node name="GetNextEmptyButton" type="Button" parent="RulesSelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.606695
+anchor_top = 0.931783
+anchor_right = 0.985356
+anchor_bottom = 0.984252
+grow_horizontal = 2
+grow_vertical = 2
+text = "Get Next Combination"
+metadata/_edit_use_anchors_ = true
+
+[node name="EqualLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 552.5
+offset_top = 258.0
+offset_right = -552.5
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorChancesPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(463, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.534
+anchor_right = 0.935764
+anchor_bottom = 0.998
+offset_left = -0.168213
+offset_right = -0.000366211
+offset_bottom = 0.227966
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorChancesLabel" type="RichTextLabel" parent="ColorChancesPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00215983
+anchor_top = 0.00308642
+anchor_right = 0.999999
+anchor_bottom = 0.0679012
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+text = "Color Chances List"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorChancesList" type="ScrollContainer" parent="ColorChancesPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0172786
+anchor_top = 0.154321
+anchor_right = 0.98704
+anchor_bottom = 0.845679
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorChancesPanel/ColorChancesList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ColorChanceOption" parent="ColorChancesPanel/ColorChancesList/VBoxContainer" instance=ExtResource("2_s714c")]
+custom_minimum_size = Vector2(0, 10.47)
+layout_mode = 2
+
+[node name="MissingRuleColorPicker" type="ColorPickerButton" parent="ColorChancesPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_left = 0.0280781
+anchor_top = 0.0802469
+anchor_right = 0.978402
+anchor_bottom = 0.131173
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="RichTextLabel" parent="ColorChancesPanel/MissingRuleColorPicker"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 20
+text = "Color for Missing Rule Pixels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalizeChancesButton" type="Button" parent="ColorChancesPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017279
+anchor_top = 0.928222
+anchor_right = 0.356372
+anchor_bottom = 0.981396
+grow_horizontal = 2
+grow_vertical = 2
+text = "Normalize Chances"
+metadata/_edit_use_anchors_ = true
+
+[node name="UpdateChancesButton" type="Button" parent="ColorChancesPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.634989
+anchor_top = 0.928222
+anchor_right = 0.978402
+anchor_bottom = 0.980691
+grow_horizontal = 2
+grow_vertical = 2
+text = "Update Chances"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="option_selected" from="RulesSelectionPanel/MarkovConditionContainer" to="." method="_on_markov_condition_container_option_selected"]
+[connection signal="pressed" from="RulesSelectionPanel/GetLastEmptyButton" to="." method="_on_previous_combo_button_pressed"]
+[connection signal="pressed" from="RulesSelectionPanel/GetNextEmptyButton" to="." method="_on_next_combo_button_pressed"]
+[connection signal="popup_closed" from="ColorChancesPanel/MissingRuleColorPicker" to="." method="_on_missing_rule_color_picker_popup_closed"]
+[connection signal="pressed" from="ColorChancesPanel/NormalizeChancesButton" to="." method="_on_normalize_chances_button_pressed"]
+[connection signal="pressed" from="ColorChancesPanel/UpdateChancesButton" to="." method="_on_update_chances_button_pressed"]

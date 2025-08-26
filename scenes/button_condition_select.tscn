@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ld623xy3qdgf"]
+
+[ext_resource type="Script" uid="uid://bdfg0cgh76tfn" path="res://scripts/button_condition_select.gd" id="1_7js5h"]
+
+[node name="ButtonConditionSelect" type="ColorRect"]
+custom_minimum_size = Vector2(45, 45)
+script = ExtResource("1_7js5h")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+selected = 0
+item_count = 1
+popup/item_0/text = "N"
+popup/item_0/id = 0
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Markov Chain Image Generator"
+config/description="This tool is used to generate images using the Markov Chain. The Markov Chain Model file would be to make a seed based image of what you want to generate. A seed based image should have a limited set of colors like 2  or 16. Next you set up the pixels where it would be observed which would serve as a Markov Chain's state. WARNING: Do not get too carried away adding checked states and unique colors otherwise you might run out of ram or never get the model done."
+config/version="0.0.0"
+run/main_scene="uid://bb10pcysh2ags"
+config/auto_accept_quit=false
+config/features=PackedStringArray("4.4", "GL Compatibility")
+run/low_processor_mode=true
+config/icon="uid://d0eklbkkk5753"
+
+[display]
+
+window/energy_saving/keep_screen_on=false
+window/low_processor_mode=true
+
+[input]
+
+undo={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
+]
+}
+redo={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
+]
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

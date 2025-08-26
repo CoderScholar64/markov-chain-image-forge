@@ -1,0 +1,3 @@
+Godot Version: 4.4.1
+Editor Commit: 55483168ce3a75454b7d744478196bc026a16972
+Seed: ArTmwHiT3TD/A68/Fj9EZce+
