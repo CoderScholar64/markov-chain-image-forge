@@ -70,6 +70,9 @@ func update(new_markov_chain: bool = false) -> void:
 
 
 func _on_files_dropped(files: PackedStringArray) -> void:
+	if %ModelFromImageWindow.visible:
+		return
+	
 	if len(files) == 1:
 		_on_open_model_dialog_file_selected(files[0])
 
