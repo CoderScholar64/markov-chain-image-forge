@@ -74,7 +74,8 @@ extends Resource
 ## var generated_image: Image = generated_result["image"]
 ## [/codeblock]
 ##
-## @tutorial(Make this Resource via External Editor): https://cite-here
+## @tutorial(How this Code Block Works): https://github.com/CoderScholar64/markov-chain-image-forge/blob/main/doc/plus_example.md
+## @tutorial(Make this Resource via External Editor): https://coderscholar64.itch.io/markov-chain-image-forge
 
 
 ## This signal is called when the algorithm fails to complete the generated image.
